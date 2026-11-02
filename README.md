@@ -1,6 +1,13 @@
 ## Hi there 👋
 
-<!--
+-My name is Lorenzo, and I am a final-year student at the Collège de l'Élysée in Lausanne.
+
+- 🔭 I'm currently working on a website and electronics projects.
+- 🌱 I'm currently developing my coding skills through web development and hands-on electronics projects.
+- 🤔 I'm looking for help with securing my code.
+
+
+ <!--
 **Lorenzo20000/Lorenzo20000** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
 Here are some ideas to get you started:
