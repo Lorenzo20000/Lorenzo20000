@@ -23,4 +23,4 @@ Here are some ideas to get you started:
 -->
 
 
-![snake gif](https://github.com/Lorenzo20000/Lorenzo20000/blob/output/github-contribution-grid-snake.gif)
+![Snake Dark](https://githubusercontent.com)
