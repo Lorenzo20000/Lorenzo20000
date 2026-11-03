@@ -1,53 +1,50 @@
-# GitHub Action for generating a contribution graph with a snake eating your contributions.
-
 name: Generate Snake
 
-# Controls when the action will run. This action runs every 6 hours.
-
+# Controls when the action will run.
 on:
   schedule:
-      # every 6 hours
+    # This action runs every 6 hours to keep your profile updated
     - cron: "0 */6 * * *"
-
-# This command allows us to run the Action automatically from the Actions tab.
+  # This command allows us to run the Action manually from the Actions tab.
   workflow_dispatch:
+  # Also runs automatically when you push changes to the main branch
+  push:
+    branches:
+      - main
 
 # The sequence of runs in this workflow:
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    # Pinned to Ubuntu 24.04 to avoid deprecation warnings and migration issues
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Checks repo under $GITHUB_WORKSPACE, so your job can access it. Updated to v4 to fix Node 20 warning.
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    # Checks repo under $GITHUB_WORKSHOP, so your job can access it
-      - uses: actions/checkout@v2
-
-    # Generates the snake  
-      - uses: Platane/snk@master
-        id: snake-gif
+      # Generates the snake for Lorenzo20000. Updated to v3 to fix the set-output warning.
+      - name: Generate github-contribution-grid-snake
+        uses: Platane/snk/svg-only@v3
         with:
           github_user_name: Lorenzo20000
-          # these next 2 lines generate the files on a branch called "output". This keeps the main branch from cluttering up.
-          gif_out_path: dist/github-contribution-grid-snake.gif
-          svg_out_path: dist/github-contribution-grid-snake.svg
+          # These lines generate the SVG files and keep the main branch clean
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+          
+      # Shows the status of the build. Makes it easier for debugging if there are any issues.
+      - name: Check git status
+        run: git status
 
-     # show the status of the build. Makes it easier for debugging (if there's any issues).
-      - run: git status
-
-      # Push the changes
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+      # Pushes the generated images to a dedicated branch called "output"
+      - name: Push github-contribution-grid-snake to the output branch
+        uses: crazy-max/ghaction-github-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: master
-          force: true
-
-      - uses: crazy-max/ghaction-github-pages@v2.1.3
-        with:
-          # the output branch we mentioned above
           target_branch: output
           build_dir: dist
         env:
