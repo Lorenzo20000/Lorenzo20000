@@ -23,9 +23,4 @@ Here are some ideas to get you started:
 -->
 
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://githubusercontent.com" />
-  <source media="(prefers-color-scheme: light)" srcset="https://githubusercontent.com" />
-  <img alt="GitHub Snake" src="https://githubusercontent.com" />
-</picture>
-
+![GitHub Snake Ocean](https://githubusercontent.com)
