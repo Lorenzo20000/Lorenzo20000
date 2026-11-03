@@ -22,5 +22,4 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
-
-![GitHub Snake Ocean](https://githubusercontent.com)
+![GitHub Snake](https://githubusercontent.com)
